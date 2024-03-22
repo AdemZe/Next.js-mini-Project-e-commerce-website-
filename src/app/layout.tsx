@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Lobster } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar/page"
+import Footer from "@/components/footer/page";
+import {ThemeProvider} from "@/context/ThemeContext"
 
-const inter = Inter({ subsets: ["latin"] });
+const BodyFont = Lobster({ subsets: ["latin"],
+weight : "400"
+ });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +21,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      
+        <body className={BodyFont.className} >
+        <ThemeProvider>
+        <Navbar />
+        {children}
+        
+        <Footer/>
+        </ThemeProvider>
+        </body>
+
+
     </html>
+    
   );
 }
